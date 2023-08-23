@@ -5,6 +5,6 @@ ADD https://www.free-css.com/assets/files/free-css-templates/download/page295/ha
 WORKDIR /var/www/html
 RUN unzip handtime.zip
 RUN cp -rvf handtime-html/* .
-RUN rm -rf handtime.zip hantime-html
+RUN rm -rf handtime.zip handtime-html
 CMD ["apache2ctl","-D","FOREGROUND"]
 EXPOSE 80
