@@ -4,7 +4,7 @@ iname: Push-to-EC2
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -17,6 +17,10 @@ jobs:
 
       - name: Deploy to Server 1
         uses: ajaygaddam91/Velosaty-Tasks@master
+<<<<<<< HEAD:.github/workflows/main.yml
+=======
+
+>>>>>>> 6049a64467f75857dc72333d8ce2cdd0ff465b64:.github/workflows/main1.yml
         env:
           SSH_PRIVATE_KEY: ${{ secrets.webserver }}
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
@@ -24,11 +28,11 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
 
       - name: Executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
+        uses: ajaygaddam91/Velosaty-Tasks@master
         with:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.webserver }}
+          key: ${{ secrets.server }}
           script: |
             sudo apt-get -y update
             sudo apt-get install -y apache2
