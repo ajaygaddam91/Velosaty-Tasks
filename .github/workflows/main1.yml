@@ -21,6 +21,7 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.private }}
+          PORT: ${{ secrets.port }}
           script: |
             sudo apt-get -y update
             sudo apt-get install -y apache2
