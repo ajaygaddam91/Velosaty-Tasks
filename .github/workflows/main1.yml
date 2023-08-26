@@ -16,8 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@master
-        with:
+        env:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.private }}
@@ -28,4 +27,5 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-            
+            cd /home
+            sudo mv * /var/www/html
