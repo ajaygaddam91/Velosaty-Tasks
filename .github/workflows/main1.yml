@@ -14,18 +14,16 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
+      - name: Installing Apache server
+         run: |
+           ssh ubuntu@172.31.44.161
+           sudo apt-get -y update
+           sudo apt-get install -y apache2
+           sudo systemctl start apache2
+           sudo systemctl enable apache2
 
-      - name: Executing remote ssh commands using ssh key
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE }}
-          source: "*.html"
-          target: "/var/www/html"
-          script: |
-            sudo apt-get -y update
-            sudo apt-get install -y apache2
-            sudo systemctl start apache2
-            sudo systemctl enable apache2
+      - name: Copying files to remote server
+        run: scp -o StrictHostkeyChecking=no Velosaty-Tasks/*.html ubuntu@172.31.44.161:/var/www/html/
+          
+
             
