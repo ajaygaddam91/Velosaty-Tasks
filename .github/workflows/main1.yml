@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-      - name: Deploying 
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE }}
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
