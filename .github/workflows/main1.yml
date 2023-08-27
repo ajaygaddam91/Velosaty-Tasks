@@ -26,7 +26,7 @@ jobs:
          sudo systemctl start apache2
          sudo systemctl enable apache2
       - name: Deploy file
-        run: scp -o StrictHostKeyChecking=no Velosaty-Tasks/*.html ${REMOTE_USER}@${REMOTE_HOST}:${TARGET}
+        run: scp -o StrictHostKeyChecking=no Velosaty-Tasks/*.html ubuntu@172.31.44.161:${TARGET}
 
 
             
