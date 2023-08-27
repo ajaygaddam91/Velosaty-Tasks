@@ -25,7 +25,6 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE }}
-          source: Velosaty-Tasks/
           target: "${{ secrets.TARGET_DIR }}"
          
 
