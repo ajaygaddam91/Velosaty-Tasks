@@ -14,17 +14,20 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-      - name: Set up SSH Key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PRIVATE }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-
-
-      - name: Deploy file
-        run: scp -o StrictHostKeyChecking=no Velosaty-Tasks/*.html ubuntu@172.31.44.161:/var/www/html/
-
-          
+      - name: Deploying 
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}  
+        
+        - name: Running the commands
+          run: |
+            sudo apt-get -y update
+            sudo apt-get install -y apache2
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            cd home
+            sudo mv * /var/www/html
 
             
