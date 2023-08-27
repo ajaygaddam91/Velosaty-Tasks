@@ -15,7 +15,7 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
       - name: Installing Apache server
-         run: |
+        run: |
            ssh ubuntu@172.31.44.161
            sudo apt-get -y update
            sudo apt-get install -y apache2
