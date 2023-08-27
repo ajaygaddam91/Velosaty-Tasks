@@ -25,7 +25,7 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE }}
-          target: "${{ secrets.TARGET_DIR }}"
+          target: ${{ secrets.TARGET_DIR }}
          
 
 
