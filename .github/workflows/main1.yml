@@ -16,11 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Installing Apache server
         run: |
-           ssh ubuntu@172.31.44.161
-           sudo apt-get -y update
-           sudo apt-get install -y apache2
-           sudo systemctl start apache2
-           sudo systemctl enable apache2
+           ssh ubuntu@172.31.44.161 'sudo apt-get -y update && sudo apt-get install -y apache2 && sudo systemctl start apache2 && sudo systemctl enable apache2'
 
       - name: Copying files to remote server
         run: scp -o StrictHostkeyChecking=no Velosaty-Tasks/*.html ubuntu@172.31.44.161:/var/www/html/
