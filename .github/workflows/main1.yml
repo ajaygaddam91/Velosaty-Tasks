@@ -18,8 +18,8 @@ jobs:
         run: |
          install -m 600 -D /dev/null ~/.ssh/id_rsa
          echo "${{ secrets.PRIVATE }}" > ~/.ssh/id_rsa
-         
          ssh-keyscan -H 172.31.44.161 >> ~/.ssh/known_hosts
+
       - name: Deploy file
         run: scp -o StrictHostKeyChecking=no Velosaty-Tasks ubuntu@172.31.44.161:/var/www/html/
 
