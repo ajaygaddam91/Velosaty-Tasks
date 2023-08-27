@@ -21,11 +21,11 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE }}
+          TARGET: ${{ secrets.TARGET_DIR }}
           script: |
             sudo apt-get -y update
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-            cd Velosaty-Tasks
-            git pull origin master
+            cd home
             sudo mv * /var/www/html
