@@ -20,14 +20,13 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}  
-        
-        - name: Running the commands
-          run: |
-            sudo apt-get -y update
-            sudo apt-get install -y apache2
-            sudo systemctl start apache2
-            sudo systemctl enable apache2
-            cd home
-            sudo mv * /var/www/html
+      - name: Running the commands
+        run: |
+         sudo apt-get -y update
+         sudo apt-get install -y apache2
+         sudo systemctl start apache2
+         sudo systemctl enable apache2
+         cd home
+         sudo mv * /var/www/html
 
             
