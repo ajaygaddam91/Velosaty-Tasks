@@ -14,10 +14,9 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-    
+      - name: Deploy file
+        run: scp -o StrictHostKeyChecking=no Velosaty-Tasks ubuntu@172.31.44.161:/var/www/html/
 
-      - name: Copying files to remote server
-        run: scp -o StrictHostkeyChecking=no Velosaty-Tasks/*.html ubuntu@172.31.44.161:/var/www/html/
           
 
             
