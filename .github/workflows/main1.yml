@@ -11,7 +11,7 @@ jobs:
    - name: Deploy to EC2 on master branch push
      runs-on: ubuntu-latest
 
-    steps:
+     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
  
