@@ -11,6 +11,9 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
 
+      - name: copying files to server
+        uses: appleboy/scp-action@master
+
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
@@ -23,3 +26,5 @@ jobs:
             sudo systemctl start apache2
             sudo systemctl enable apache2
             cd /var/www/html
+            git pull origin master
+
