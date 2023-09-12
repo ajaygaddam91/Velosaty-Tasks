@@ -1,0 +1,32 @@
+name: pipeline for Velosaty-Core
+
+on:
+  push:
+    tags:
+      - '*'  
+jobs:
+  test:
+   - name: Run Tests
+     runs-on: main-server
+
+     steps:
+      - name: Pulling the Updates 
+        run: git pull origin main --rebase
+      - name: Install npm Dependencies
+        run: |
+          npm ci
+          npm run build
+          npm run test
+  deploy:
+    - name: Deploy Code
+      needs: test
+      runs-on: main-server
+      steps:
+       - name: Workdir Setup
+         run: su -l velosatydotcom && cd ~/services/core
+       - name: Install npm Dependencies
+         run: npm i --production 
+       - name: Restart PM2
+         run: pm2 restart velosaty-core  
+       - name: Get Latest Logs 
+         run: pm2 logs velosaty-core
