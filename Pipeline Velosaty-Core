@@ -1,5 +1,3 @@
-name: pipeline for Velosaty-Core
-
 on:
   push:
     tags:
@@ -10,6 +8,8 @@ jobs:
      runs-on: main-server
 
      steps:
+      - name: mkdir tmp
+        run: mkdir /tmp && cd /tmp
       - name: Pulling the Updates 
         run: git pull origin main --rebase
       - name: Install npm Dependencies
