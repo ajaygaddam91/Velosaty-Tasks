@@ -8,7 +8,7 @@ jobs:
      runs-on: main-server
 
      steps:
-      - name: mkdir tmp
+      - name: creating tmp folder
         run: mkdir /tmp && cd /tmp
       - name: Pulling the Updates 
         run: git pull origin main --rebase
@@ -16,11 +16,12 @@ jobs:
         run: |
           npm ci
           npm run build
-          npm run test
+          npm run test --if-present
   deploy:
     - name: Deploy Code
-      needs: test
       runs-on: main-server
+      needs: test
+      if {{ needs.test.result=='true' }}
       steps:
        - name: Workdir Setup
          run: su -l velosatydotcom && cd ~/services/core
